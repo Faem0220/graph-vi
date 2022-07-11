@@ -1,46 +1,39 @@
 import "./styles.css";
 import cytoscape from "cytoscape";
 
+const graphData = require("./graph.json");
 var cy = cytoscape({
+  container: document.getElementById("cy"), // container to render in
 
-  container: document.getElementById('cy'), // container to render in
+  elements: graphData,
 
-  elements: [ // list of graph elements to start with
-    { // node a
-      data: { id: 'a' }
-    },
-    { // node b
-      data: { id: 'b' }
-    },
-    { // edge ab
-      data: { id: 'ba', source: 'a', target: 'b' }
-    }
-  ],
-
-  style: [ // the stylesheet for the graph
+  style: [
+    // the stylesheet for the graph
     {
-      selector: 'node',
+      selector: "node",
       style: {
-        'background-color': '#666',
-        'label': 'data(id)'
+        "background-color": "#3af",
+        label: "data(id)",
+        "font-family": "monospace"
       }
     },
 
     {
-      selector: 'edge',
+      selector: "edge",
       style: {
-        'width': 3,
-        'line-color': '#ccc',
-        'target-arrow-color': '#ccc',
-        'target-arrow-shape': 'triangle',
-        'curve-style': 'bezier'
+        width: 2,
+        "line-color": "#ccc",
+        "target-arrow-color": "#922",
+        "target-arrow-shape": "triangle",
+        "curve-style": "bezier",
+        "font-family": "monospace",
+        color: "#822",
+        label: "data(weight)"
       }
     }
   ],
 
   layout: {
-    name: 'grid',
-    rows: 1
+    name: "breadthfirst"
   }
-
 });
